@@ -22,7 +22,7 @@ if (isset($_GET['year'])) {
 
 
 <body>
-    <div class="wrapper">
+    <div class="wrappers">
         <div class="side-bar">
             <div class="logo-details">
                 <span class="admin-name">Admin</span>
@@ -89,28 +89,92 @@ if (isset($_GET['year'])) {
                     </nav>
                     <div class="home-content">
                         <div class="dashboard-boxes">
-                            <div class="box one">
-                                <div class="right-side">
-                                    <div class="number">20</div>
-                                    <div class="box-topic">Total Books</div>
-                                </div>
-                                <i class='bx bxs-book icon a'></i>
-                            </div>
+                            <h1>Dashboard</h1>
+                            <div class="row">
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-aqua">
+                                        <div class="inner">
+                                            <?php
+                                            $sql = "SELECT * FROM books";
+                                            $query = $conn->query($sql);
 
-                            <div class="box two">
-                                <div class="right-side">
-                                    <div class="number">8</div>
-                                    <div class="box-topic">Total Students</div>
-                                </div>
-                                <i class='bx bxs-graduation icon b'></i>
-                            </div>
+                                            echo "<h3>" . $query->num_rows . "</h3>";
+                                            ?>
 
-                            <div class="box three">
-                                <div class="right-side">
-                                    <div class="number">1</div>
-                                    <div class="box-topic">Returned Today</div>
+                                            <p>Total Books</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa fa-book"></i>
+                                        </div>
+                                        <a href="book.php" class="small-box-footer">More info <i
+                                                class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
                                 </div>
-                                <i class='bx bx-arrow-to-left icon c'></i>
+                                <!-- ./col -->
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-green">
+                                        <div class="inner">
+                                            <?php
+                                            $sql = "SELECT * FROM students";
+                                            $query = $conn->query($sql);
+
+                                            echo "<h3>" . $query->num_rows . "</h3>";
+                                            ?>
+
+                                            <p>Total Students</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa fa-graduation-cap"></i>
+                                        </div>
+                                        <a href="student.php" class="small-box-footer">More info <i
+                                                class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-yellow">
+                                        <div class="inner">
+                                            <?php
+                                            $sql = "SELECT * FROM returns WHERE date_return = '$today'";
+                                            $query = $conn->query($sql);
+
+                                            echo "<h3>" . $query->num_rows . "</h3>";
+                                            ?>
+
+                                            <p>Returned Today</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa fa-mail-reply"></i>
+                                        </div>
+                                        <a href="return.php" class="small-box-footer">More info <i
+                                                class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- ./col -->
+                                <div class="col-lg-3 col-xs-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-red">
+                                        <div class="inner">
+                                            <?php
+                                            $sql = "SELECT * FROM borrow WHERE date_borrow = '$today'";
+                                            $query = $conn->query($sql);
+
+                                            echo "<h3>" . $query->num_rows . "</h3>";
+                                            ?>
+
+                                            <p>Borrowed Today</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fa fa-mail-forward"></i>
+                                        </div>
+                                        <a href="borrow.php" class="small-box-footer">More info <i
+                                                class="fa fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- ./col -->
                             </div>
                         </div>
 
@@ -119,9 +183,6 @@ if (isset($_GET['year'])) {
             </div>
         </div>
     </div>
-
-
-
 </body>
 
 </html>
