@@ -13,14 +13,26 @@
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bx-transfer'></i>
-                    <span class="links-name">Transaction</span>
+                    <i class='bx bxs-book-bookmark'></i>
+                    <span class="links-name">Borrow Books</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxs-book'></i>
-                    <span class="links-name">Books</span>
+                    <i class='bx bx-transfer'></i>
+                    <span class="links-name">Return Books</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-book-open'></i>
+                    <span class="links-name">Book lists</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-filter'></i>
+                    <span class="links-name">Book Category</span>
                 </a>
             </li>
             <li>
