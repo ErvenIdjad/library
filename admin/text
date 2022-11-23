@@ -1,0 +1,39 @@
+<section class="home-section">
+        <nav>
+            <div class="side-bar-button">
+                <i class='bx bx-menu' style='color:#53270a'></i>
+            </div>
+            <div class="profile-details">
+                <i class='bx bxs-user-circle'></i>
+                <span class="admin-name">Admin</span>
+            </div>
+        </nav>
+        <div class="home-content">
+            <div class="dashboard-boxes">
+                <div class="box one">
+                    <div class="right-side">
+                        <div class="number">20</div>
+                        <div class="box-topic">Total Books</div>
+                    </div>
+                    <i class='bx bxs-book icon a'></i>
+                </div>
+
+                <div class="box two">
+                    <div class="right-side">
+                        <div class="number">8</div>
+                        <div class="box-topic">Total Students</div>
+                    </div>
+                    <i class='bx bxs-graduation icon b'></i>
+                </div>
+
+                <div class="box three">
+                    <div class="right-side">
+                        <div class="number">1</div>
+                        <div class="box-topic">Returned Today</div>
+                    </div>
+                    <i class='bx bx-arrow-to-left icon c'></i>
+                </div>
+            </div>
+
+        </div>
+    </section>

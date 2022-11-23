@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    font-size: 14px;
+    font-family:'Poppins', sans-serif;
+}
+
+
+.container{
+    width: 100%;
+    height: calc(100vh);
+    background-image: url(../imgs/library.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form{
+    max-width: 400px;
+    padding: 40px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.login-form .divider{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.login-form .details{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-form .details i{
+    font-size: 40px;
+    font-weight: 600;
+    color: #6d5d04;
+    text-align: center;
+}
+
+.login-form .details .signin{
+    color: #6d5d04;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+label{
+    margin-right: 20px;
+}
+
+.btn{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 16px 0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 1px solid black;    
+    background: #6d5d04;
+    color: white;
+    font-size: 16px;
+}
+
+.forgot{
+    text-align: center;
+    font-size: 12px;
+}
+
+.error{
+    color: red;
+    text-align: center;
+    line-height: 20px;
+    padding-top: 8px;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.wrapper .side-bar{
+    width: 250px;
+    height: calc(100vh);
+    position: fixed;
+    overflow: hidden;
+    background-color: #6d5d04;
+    padding: 22px 0;
+
+}
+
+
+.wrapper .side-bar .logo-details{
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 800;
+}
+.wrapper .side-bar .logo-details .bxs-user-circle{
+    font-size: 30px;
+}
+
+.wrapper .side-bar ul li {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.05);
+}
+
+.wrapper .side-bar ul li a{
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+.wrapper .side-bar ul li:hover{
+    background: #d1b30b;
+}
+
+.wrapper .side-bar ul li .bx{
+    width: 25px;
+
+}
+
+.wrapper .side-bar .line{
+    margin: 10px auto;
+    width: 90%;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid white;
+}
+
+.wrapper .side-bar .active{
+    background: #d1b30b;
+}
+
+#logout{
+    position: absolute;
+    bottom: 0;
+}
+
+
+.wrapper .main-content {
+    width: 100%;
+}
+
+.wrapper .main-content .header {
+    padding: 20px;
+    background: #0003a7;
+    color: white;
+    border-bottom: 1px solid gray;
+}
+
+.home-section {
+    position: relative;
+    background-color: #f5f5f5;
+    min-height: calc(100vh);
+    width: calc(100% - 250px);
+    left: 250px;
+}
+
+.home-section nav {
+    display: flex;
+    justify-content: space-between;
+    height: 74px;
+    background-color: white;
+    color: rgb(15, 15, 102);
+    align-items: center;
+    position: fixed;
+    width: calc(100% - 250px);
+    left: 250px;
+    z-index: 999;
+    padding: 0 20px;
+    border-bottom: 1px solid #6d5d04;
+}
+
+.home-section nav .side-bar-button {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+nav .side-bar-button i {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.home-section .profile-details {
+    font-size: 30px;
+}
+
+.home-section .profile-details .bxs-user-circle {
+    font-size: 50px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+.home-content .dashboard-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 26px;
+    padding-top: 120px;
+}
+
+.home-content .dashboard-boxes .box .one {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: calc(100% / 3 - 18px);
+    background: rgb(230, 194, 171);
+    padding: 15px 14px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
