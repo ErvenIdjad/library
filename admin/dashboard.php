@@ -1,24 +1,25 @@
 <?php
 
-session_start();
 
-if (!isset($_SESSION['logged-in'])) {
-    header('location: ../login/login.php');
-}
+
+
+
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include 'includes/timezone.php';
+$today = date('Y-m-d');
+$year = date('Y');
+if (isset($_GET['year'])) {
+    $year = $_GET['year'];
+}
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>Dashboard</title>
-</head>
+<?php include 'includes/session.php'; ?>
+<?php include 'includes/header.php'; ?>
+
 
 <body>
     <div class="wrapper">
