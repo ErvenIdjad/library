@@ -1,3 +1,5 @@
+
+
 <div class="wrappers">
     <div class="side-bar">
         <div class="logo-details">
@@ -5,50 +7,50 @@
             <i class='bx bxs-user-circle'></i>
         </div>
         <ul class="nav-links">
-            <li class="active">
-                <a href="#">
-                    <i class='bx bxs-dashboard'></i>
+            <li class="<?php echo $dashboard; ?>">
+                <a href="../admin/dashboard.php">
+                    <i class='bx bxs-dashboard' ></i>
                     <span class="links-name">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-book-bookmark'></i>
-                    <span class="links-name">Borrow Books</span>
+            <li class="<?php echo $borrowed; ?>">
+                <a href="../admin/borrowed.php">
+                    <i class="fa fa-mail-forward"></i>
+                    <span class="links-name">Borrowed Books</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-transfer'></i>
-                    <span class="links-name">Return Books</span>
+            <li class="<?php echo $returned; ?>">
+                <a href="../admin/return.php">
+                    <i class="fa fa-mail-reply"></i>
+                    <span class="links-name">Returned Books</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?php echo $book; ?>">
+                <a href="../admin/book.php">
                     <i class='bx bx-book-open'></i>
                     <span class="links-name">Book lists</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?php echo $category; ?>">
+                <a href="../admin/category.php">
                     <i class='bx bx-filter'></i>
                     <span class="links-name">Book Category</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?php echo $students; ?>">
+                <a href="../admin/students.php">
                     <i class='bx bxs-graduation'></i>
                     <span class="links-name">Students</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?php echo $teachers; ?>">
+                <a href="../admin/teachers.php">
                     <i class='bx bxs-user-rectangle'></i>
                     <span class="links-name">Teachers</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?php echo $settings; ?>">
+                <a href="../admin/settings.php">
                     <i class='bx bxs-cog'></i>
                     <span class="links-name">Settings</span>
                 </a>

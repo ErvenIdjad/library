@@ -13,14 +13,13 @@ if (isset($_GET['year'])) {
 
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-
+<?php include 'includes/variables.php'; ?>
+<?php $dashboard = 'active'; ?>
 
 <body>
 
     <?php include 'includes/sidebar.php'; ?>
-
     <div class="main-content">
-
         <div class="info">
             <section class="home-section">
                 <nav>
