@@ -423,3 +423,37 @@ a.button {
 .table-heading .btn-flat:active{
     background-color: #9d0208;
 }
+
+.search{
+    display: inline-block;
+}
+
+form.example{
+    position: relative;
+    display: flex;
+    width: 50%;
+}
+
+form.example .submit{
+    width: 10%;
+    padding: 10px 10px 10px 10px;
+    height: 50px;
+    cursor: pointer;
+}
+form.example .submit:hover {
+    background-color: #286090;
+    color: #fff;
+    
+}
+
+#myInput {
+    background-image: url('../imgs/icons8-search-30.png'); 
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 15px 20px 12px 50px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 1px;
+}
