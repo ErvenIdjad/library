@@ -82,6 +82,7 @@ label{
     color: white;
     font-size: 16px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .btn:hover{
@@ -270,3 +271,155 @@ nav .side-bar-button i {
     margin-right: 10px;
 }
 
+
+
+.table-container{
+    padding-top: 120px;
+}
+.table-container .table-heading {
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-title {
+    font-weight: solid;
+    font-size: 20px;
+    text-align: left;
+    color: #333;
+    margin: 20px 0;
+    display: inline;
+}
+
+.table-container {
+    position: relative;
+    top: 80px;
+    padding: 40px;
+}
+
+.table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+    overflow: auto;
+}
+
+th,
+td {
+    padding: 8px;
+    font-size: 14px;
+}
+
+thead {
+    background-color: #6a040f;
+    color: #fff;
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: 2%;
+    
+}
+
+thead th {
+    width: auto;
+    height: fit-content;
+    
+}
+
+
+tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+tr .action,
+th .action {
+    text-align: left;
+}
+
+tr div.action {
+    display: flex;
+    justify-content: left;
+}
+
+td a {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    margin: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+}
+
+.button {
+    background-color: #9d0208;
+    color: white;
+    border: none;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.table-container .button {
+    width: fit-content;
+}
+
+a.button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 0;
+    text-decoration: none;
+}
+
+.form.add-form .button {
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+.btn-flat:active {
+    background-color: #9d0208;
+    color: #fff;
+}
+
+.btn-flat:hover{
+    background-color: #286090;
+    color: #fff;
+}
+
+.ldl{
+    text-transform: uppercase;
+    font-size: 1em;
+    margin-left: -50px;
+}
+
+
+.small-box {
+    height: 300px;
+}
+
+.small-box h3{
+    font-size: 2em;
+}
+
+.small-box .small-box-footer {
+    margin-top: 100px;
+}
+
+.small-box .icon{
+    color: white;
+}
+
+.table-heading .btn-flat:active{
+    background-color: #9d0208;
+}
