@@ -14,21 +14,21 @@
                 </a>
             </li>
             <li class="<?php echo $borrowed; ?>">
-                <a href="../admin/borrowed.php">
+                <a href="../borrow/borrowed.php">
                     <i class="fa fa-mail-forward"></i>
                     <span class="links-name">Borrowed Books</span>
                 </a>
             </li>
             <li class="<?php echo $returned; ?>">
-                <a href="../admin/returned.php">
+                <a href="../return/returned.php">
                     <i class="fa fa-mail-reply"></i>
                     <span class="links-name">Returned Books</span>
                 </a>
             </li>
             <li class="<?php echo $book; ?>">
-                <a href="../admin/book.php">
+                <a href="../book/book.php">
                     <i class='bx bx-book-open'></i>
-                    <span class="links-name">Book lists</span>
+                    <span class="links-name">Book list</span>
                 </a>
             </li>
             <li class="<?php echo $category; ?>">

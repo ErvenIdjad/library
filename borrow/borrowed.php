@@ -1,11 +1,11 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
-<?php include 'includes/variables.php'; ?>
-<?php $returned = 'active'; ?>
+<?php include '../admin/includes/session.php'; ?>
+<?php include '../admin/includes/header.php'; ?>
+<?php include '../admin/includes/variables.php'; ?>
+<?php $borrowed = 'active'; ?>
 
 
 <body>
-    <?php include 'includes/sidebar.php'; ?>
+    <?php include '../admin/includes/sidebar.php'; ?>
     <div class="main-content">
         <div class="info">
             <section class="home-section">
@@ -53,8 +53,8 @@
 
                     <div class="table-container">
                         <div class="table-heading">
-                            <h3 class="table-title">RETURNED BOOKS</h3>
-                            <form class="example" action="returned.php" method="GET">
+                            <h3 class="table-title">BORROWED BOOKS</h3>
+                            <form class="example" action="borrowed.php" method="GET">
                                 <input type="text" id="myInput" name="search" placeholder="Search for Student ID.."
                                     value="<?php if (isset($_GET['search'])) {
                                         echo $_GET['search'];
@@ -64,7 +64,7 @@
 
                             <div class="box-header">
                                 <a href="#addnew" data-toggle="modal"
-                                    class="btn btn-primary btn-sm btn-flat action-borrow">Add Return <i class="fa fa-plus"></i></a>
+                                    class="btn btn-primary btn-sm btn-flat action-borrow">New Borrow <i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                         <table class="table">
@@ -73,9 +73,10 @@
                                     <th class="hidden"></th>
                                     <th>Student ID</th>
                                     <th>Student Name</th>
-                                    <th>Book title</th>
                                     <th>Book Number</th>
-                                    <th>Date Returned</th>
+                                    <th>Book Title</th>
+                                    <th>Date Borrowed</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,10 +84,14 @@
                                 <?php
                                 if (!isset($_GET['search'])) {
 
-                                    $sql = "SELECT *, students.student_id AS stud FROM returns LEFT JOIN students ON students.id=returns.student_id LEFT JOIN books ON books.id=returns.book_id ORDER BY date_return DESC";
+                                    $sql = "SELECT *, students.student_id AS stud, borrow.status AS barstat FROM borrow LEFT JOIN students ON students.id=borrow.student_id LEFT JOIN books ON books.id=borrow.book_id ORDER BY date_borrow DESC";
                                     $query = $conn->query($sql);
                                     while ($row = $query->fetch_assoc()) {
-                                       
+                                        if ($row['barstat']) {
+                                            $status = '<span class="label label-success">RETURNED</span>';
+                                        } else {
+                                            $status = '<span class="label label-danger">NOT RETURNED</span>';
+                                        }
 
                                         echo "
                                         <tr id='myUL'>
@@ -95,25 +100,32 @@
                                             <td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>
                                             <td>" . $row['isbn'] . "</td>
                                             <td>" . $row['title'] . "</td>
-                                            <td>" . date('M d, Y', strtotime($row['date_return'])) . "</td>
+                                            <td>" . date('M d, Y', strtotime($row['date_borrow'])) . "</td>
+                                            <td>" . $status . "</td>
                                         </tr>
                                         ";
                                     }
                                 } else {
                                     if (isset($_GET['search'])) {
                                         $searched = $_GET['search'];
-                                        $sql = "SELECT *, students.student_id AS stud FROM returns LEFT JOIN students ON students.id=returns.student_id LEFT JOIN books ON books.id=returns.book_id WHERE CONCAT (students.student_id) LIKE '%$searched%' ";
+                                        $sql = "SELECT *, students.student_id AS stud, borrow.status AS barstat FROM borrow LEFT JOIN students ON students.id=borrow.student_id LEFT JOIN books ON books.id=borrow.book_id WHERE CONCAT (students.student_id) LIKE '%$searched%' ";
                                         $query = $conn->query($sql);
                                         while ($row = $query->fetch_assoc()) {
-            
+                                            if ($row['barstat']) {
+                                                $status = '<span class="label label-success">RETURNED</span>';
+                                            } else {
+                                                $status = '<span class="label label-danger">NOT RETURNED</span>';
+                                            }
+
                                             echo "
                                             <tr id='myUL'>
                                                 <td class='hidden'></td>
-                                            <td>" . $row['stud'] . "</td>
-                                            <td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>
-                                            <td>" . $row['isbn'] . "</td>
-                                            <td>" . $row['title'] . "</td>
-                                            <td>" . date('M d, Y', strtotime($row['date_return'])) . "</td>
+                                                <td>" . $row['stud'] . "</td>
+                                                <td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>
+                                                <td>" . $row['isbn'] . "</td>
+                                                <td>" . $row['title'] . "</td>
+                                                <td>" . date('M d, Y', strtotime($row['date_borrow'])) . "</td>
+                                                <td>" . $status . "</td>
                                             </tr>
                                             ";
                                         }
@@ -126,12 +138,49 @@
                             </tbody>
                     </div>
                 </div>
-                <?php include 'includes/return_modal.php'; ?>
+                <?php include '../admin/includes/borrow_modal.php'; ?>
             </section>
         </div>
         <?php include '../admin/includes/scripts.php'; ?>
 
     </div>
 
+
+
+    <script>
+        // for add borrow
+        function rem_select() {
+            $('[name="isbn[]"]').change(function () {
+                if ($(this).val() == '<rem>') {
+                    $(this).closest('.form-group').remove()
+                }
+            })
+        }
+        $(function () {
+            $(document).on('click', '#append', function (e) {
+                e.preventDefault();
+                var books = '<?php echo json_encode($brows) ?>';
+                var _s = $('<select class="form-control" name="isbn[]"></select>')
+                var _tmp = $('<div></div>')
+                var option = '';
+                option += '<option value="" selected disabled>Please Select Book here.</option>';
+                option += '<option value="<rem>" >< remove select></option>';
+                books = JSON.parse(books)
+                if (books.length > 0) {
+                    Object.keys(books).map(k => {
+                        option += '<option value="' + books[k].isbn + '">' + books[k].title + ' [' + books[k].isbn + ']' + '</option>'
+                    })
+                }
+                _s.append(option)
+                _tmp.append(_s)
+
+                $('#append-div').append(
+                    '<div class="form-group"><label for="" class="col-sm-3 control-label">ISBN</label><div class="col-sm-9">' + _tmp.html() + '</div></div>'
+                );
+                rem_select()
+            });
+        });
+
+    </script>
 
 </body>

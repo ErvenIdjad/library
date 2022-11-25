@@ -475,3 +475,42 @@ form.example .submit:hover {
     position: absolute;
     z-index: 999;
 }
+
+.table-book {
+    margin-top: 50px;
+}
+
+.categ {
+
+    width: 200px;
+    
+}
+
+tr .action,
+th .action {
+    text-align: center;
+}
+
+tr td.action {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+td button {
+
+    font-size: 22px;
+    border-radius: 5px;
+    margin: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+}
+
+.actions{
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    height: 25px;
+    
+}
