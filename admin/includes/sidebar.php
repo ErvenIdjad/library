@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li class="<?php echo $returned; ?>">
-                <a href="../admin/return.php">
+                <a href="../admin/returned.php">
                     <i class="fa fa-mail-reply"></i>
                     <span class="links-name">Returned Books</span>
                 </a>

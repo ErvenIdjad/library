@@ -103,6 +103,7 @@ label{
 
 
 
+
 .wrappers .side-bar{
     width: 250px;
     height: calc(100vh);
@@ -270,11 +271,13 @@ nav .side-bar-button i {
 .wrappers .side-bar ul li .fa-mail-forward, .fa-mail-reply{
     margin-right: 10px;
 }
-
+.home-content{
+    height: 1pxbd268;
+}
 
 
 .table-container{
-    padding-top: 120px;
+    padding-top: 20px;
 }
 .table-container .table-heading {
     display: flex;
@@ -456,4 +459,19 @@ form.example .submit:hover {
     border: 1px solid #ddd;
     margin-bottom: 12px;
     border-radius: 1px;
+}
+
+#append{
+    margin-left: -150px;
+    width: 558px;
+}
+
+.pull-left {
+    margin-left: 6px;
+    width: 560px;
+}
+
+.alert-dismissible{
+    position: absolute;
+    z-index: 999;
 }
