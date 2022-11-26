@@ -59,7 +59,7 @@
                                     value="<?php if (isset($_GET['search'])) {
                                         echo $_GET['search'];
                                     } ?>">
-                                <input type="submit" name="submit" class="submit" value="search">
+                                <button type="submit" name="submit" class="submit" ><i class="fa fa-search"></i></button>
                             </form>
 
                             <div class="box-header">

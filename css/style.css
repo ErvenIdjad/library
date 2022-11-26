@@ -438,24 +438,25 @@ form.example{
 }
 
 form.example .submit{
-    width: 10%;
+    width: 9%;
     padding: 10px 10px 10px 10px;
     height: 50px;
+    margin-top: 9px;
     cursor: pointer;
+    font-size: 20px;
 }
 form.example .submit:hover {
     background-color: #286090;
     color: #fff;
-    
+    border: none;
 }
 
 #myInput {
-    background-image: url('../imgs/icons8-search-30.png'); 
     background-position: 10px 10px;
     background-repeat: no-repeat;
     width: 100%;
     font-size: 16px;
-    padding: 15px 20px 12px 50px;
+    padding: 15px 20px 12px 20px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
     border-radius: 1px;
@@ -514,3 +515,21 @@ td button {
     height: 25px;
     
 }
+
+.box-headers{
+    height: 25px;
+
+}
+.categ{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.action-borrows{
+    margin: 0px 0px 0px 8px;
+    padding: 0px 5px 0px 5px;
+    height: 25px;
+    width: 25px;
+}
+

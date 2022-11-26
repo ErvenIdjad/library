@@ -7,7 +7,8 @@ $catid = 0;
 $where = '';
 if (isset($_GET['category'])) {
     $catid = $_GET['category'];
-    $where = 'WHERE books.category_id = ' . $catid;}
+    $where = 'WHERE books.category_id = ' . $catid;
+}
 ?>
 
 
@@ -54,9 +55,9 @@ if (isset($_GET['category'])) {
                             <h3 class="table-title">LIST OF BOOKS</h3>
                             <form class="example" action="book.php" method="GET">
                                 <input type="text" id="myInput" name="search" placeholder="Search..." value="<?php if (isset($_GET['search'])) {
-                                        echo $_GET['search'];
-                                    } ?>">
-                                <input type="submit" name="submit" class="submit" value="search">
+                                    echo $_GET['search'];
+                                } ?>">
+                                <button type="submit" name="submit" class="submit"><i class="fa fa-search"></i></button>
                             </form>
 
                             <div class="box-header">
@@ -116,18 +117,18 @@ if (isset($_GET['category'])) {
                                                 $status = '<span class="label label-success">available</span>';
                                             }
                                             echo "
-                                                <tr>
-                                                    <td>" . $row['name'] . "</td>
-                                                    <td>" . $row['isbn'] . "</td>
-                                                    <td>" . $row['title'] . "</td>
-                                                    <td>" . $row['author'] . "</td>
-                                                    <td>" . $row['publisher'] . "</td>
-                                                    <td>" . $status . "</td>
-                                                <td>
-                                                    <button class='btn btn-success btn-sm edit btn-flat' data-id='" . $row['bookid'] . "'><i class='fa fa-edit'></i> Edit</button>
-                                                    <button class='btn btn-danger btn-sm delete btn-flat' data-id='" . $row['bookid'] . "'><i class='fa fa-trash'></i> Delete</button>
-                                                </td>
-                                                </tr>
+                                            <tr>
+                                            <td>" . $row['isbn'] . "</td>
+                                            <td>" . $row['name'] . "</td>
+                                            <td>" . $row['title'] . "</td>
+                                            <td>" . $row['author'] . "</td>
+                                            <td>" . $row['publish_date'] . "</td>
+                                            <td>" . $status . "</td>
+                                            <td class='action'>
+                                                <button class='actions btn btn-success btn-sm edit btn-flat' data-id='" . $row['bookid'] . "'><i class='fa fa-edit'></i> Edit</button>
+                                                <button class='actions btn btn-danger btn-sm delete btn-flat' data-id='" . $row['bookid'] . "'><i class='fa fa-trash'></i> Delete</button>
+                                            </td>
+                                            </tr>
                                         ";
                                         }
                                     } else {
@@ -139,19 +140,32 @@ if (isset($_GET['category'])) {
                     </div>
                     <?php include '../admin/includes/book_modal.php'; ?>
                     <div class="categ form-group">
+
                         <select class="form-control input-sm" id="select_category">
+
                             <option value="0">ALL</option>
+
                             <?php
                             $sql = "SELECT * FROM category";
-                                $query = $conn->query($sql);
-                                        while ($catrow = $query->fetch_assoc()) {
-                                            $selected = ($catid == $catrow['id']) ? " selected" : "";
-                                            echo "
+                            $query = $conn->query($sql);
+                            while ($catrow = $query->fetch_assoc()) {
+                                $selected = ($catid == $catrow['id']) ? " selected" : "";
+                                echo "
                                                 <option value='" . $catrow['id'] . "' " . $selected . ">" . $catrow['name'] . "</option>
                                             ";
-                                        }
-                                        ?>
+                            }
+                            ?>
                         </select>
+                        <div class="box-headers">
+                            <a href="#newcat" data-toggle="modal"
+                                class="btn btn-primary btn-sm btn-flat action-borrows pad"><i
+                                    class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="box-headers">
+                            <a href="#addnew" data-toggle="modal"
+                                class="btn btn-primary btn-sm btn-flat action-borrows pad"><i
+                                    class="fa fa-trash"></i></a>
+                        </div>
                     </div>
                     <?php
                     if (isset($_POST['id'])) {
@@ -159,7 +173,7 @@ if (isset($_GET['category'])) {
                         $sql = "SELECT *, books.id AS bookid FROM books LEFT JOIN category ON category.id=books.category_id WHERE books.id = '$id'";
                         $query = $conn->query($sql);
                         $row = $query->fetch_assoc();
-                    
+
                         echo json_encode($row);
                     }
                     ?>
@@ -167,53 +181,53 @@ if (isset($_GET['category'])) {
             </section>
         </div>
     </div>
-<?php include '../admin/includes/scripts.php'; ?>
-<script>
-    $(function () {
-        $('#select_category').change(function () {
-            var value = $(this).val();
-            if (value == 0) {
-                window.location = 'book.php';
-            }
-            else {
-                window.location = 'book.php?category=' + value;
-            }
+    <?php include '../admin/includes/scripts.php'; ?>
+    <?php include '../admin/includes/scripts.php'; ?>
+    <script>
+        $(function () {
+            $('#select_category').change(function () {
+                var value = $(this).val();
+                if (value == 0) {
+                    window.location = 'book.php';
+                }
+                else {
+                    window.location = 'book.php?category=' + value;
+                }
+            });
+
+            $(document).on('click', '.edit', function (e) {
+                e.preventDefault();
+                $('#edit').modal('show');
+                var id = $(this).data('id');
+                getRow(id);
+            });
+
+            $(document).on('click', '.delete', function (e) {
+                e.preventDefault();
+                $('#delete').modal('show');
+                var id = $(this).data('id');
+                getRow(id);
+            });
         });
 
-        $(document).on('click', '.edit', function (e) {
-            e.preventDefault();
-            $('#edit').modal('show');
-            var id = $(this).data('id');
-            getRow(id);
-        });
-
-        $(document).on('click', '.delete', function (e) {
-            e.preventDefault();
-            $('#delete').modal('show');
-            var id = $(this).data('id');
-            getRow(id);
-        });
-    });
-
-    function getRow(id) {
-        $.ajax({
-            type: 'POST',
-            url: 'book.php',
-            data: { id: id },
-            dataType: 'json',
-            success: function (response) {
-                $('.bookid').val(response.bookid);
-                $('#edit_isbn').val(response.isbn);
-                $('#edit_title').val(response.title);
-                $('#catselect').val(response.category_id).html(response.name);
-                $('#edit_author').val(response.author);
-                $('#edit_publisher').val(response.publisher);
-                $('#datepicker_edit').val(response.publish_date);
-                $('#del_book').html(response.title);
-            }
-        });
-    }
-</script>
+        function getRow(id) {
+            $.ajax({
+                type: 'POST',
+                url: 'fetchbook.php',
+                data: { id: id },
+                dataType: 'json',
+                success: function (response) {
+                    $('.bookid').val(response.bookid);
+                    $('#edit_isbn').val(response.isbn);
+                    $('#edit_title').val(response.title);
+                    $('#catselect').val(response.category_id).html(response.name);
+                    $('#edit_author').val(response.author);
+                    $('#datepicker_edit').val(response.publish_date);
+                    $('#del_book').html(response.title);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
